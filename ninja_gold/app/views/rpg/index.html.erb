@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+
+  <title>Ninja Money</title>
+</head>
+
+<body>
+  <div class="container col-3">
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Your Gold:</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder=" <%= session[:gold] %> ">
+    </div>
+  </div>
+
+  <div class="container col-9">
+    <div class="card-group">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Farm</h5>
+          <p class="card-text text-center">(earns 10-20 golds)</p>
+          <form action="/farm" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="farm" value="farm">
+            <input type="submit" name="submit" value="Find Gold!" class="btn btn-primary btn-sm">
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Cave</h5>
+          <p class="card-text text-center">(earns 5-10 golds)</p>
+          <form action="/cave" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="cave" value="cave">
+            <input type="submit" name="submit" value="Find Gold!" class="btn btn-primary btn-sm">
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">House</h5>
+          <p class="card-text text-center">(earns 2-5 golds)</p>
+          <form action="/house" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="house" value="house">
+            <input type="submit" name="submit" value="Find Gold!" class="btn btn-primary btn-sm">
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Casino</h5>
+          <p class="card-text text-center">(earns/takes 0-50 golds)</p>
+          <form action="/casino" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="casino" value="casino">
+            <input type="submit" name="submit" value="Find Gold!" class="btn btn-primary btn-sm">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-6 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <% session[:activities].reverse_each do |x| %>
+        <p> <%= x["message"] %> </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

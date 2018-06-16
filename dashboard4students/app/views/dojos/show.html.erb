@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+  crossorigin="anonymous">
+  
+</head>
+
+<body>
+  <div class="container col-3">
+
+      <div class="card">
+          <div class="card-header text-centered"><h2><%= @show.branch %> Dojo</h2></div>
+          <div class="card-body">
+            <h5 class="card-title text-centered">Address: <%= @show.street %></h5>
+            <h5 class="card-title text-centered">City: <%= @show.city %>  State: <%= @show.state %></h5>
+            <a href="/dojos/<%=@show.id%>/edit" class="btn btn-primary">Edit</a>
+          </div>
+        </div>
+  </div>
+  <!--close container-->
+
+      <div class="container col-6">
+        <h1>Student Roster</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @all.each do |student| %>
+          <tr>
+            <td><%= student.first_name %></td>
+            <td><%= student.last_name %></td>
+            <td><%= student.email %></td>
+            <td><a href="/dojo/<%= @show.id %>/students/<%= student.id %>">Show</a> | <a href="/dojo/<%= @show.id %>/students/<%= student.id %>/edit">Edit</a> | <a href="/dojo/<%= @show.id %>/students/<%= student.id %>" data-method="delete">Destroy</a></td>
+        </tr>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-primary btn-sm" href="/dojos" role="button">Home</a>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Second group">
+            <a class="btn btn-primary btn-sm" href="/dojo/:dojo_id/students/new" role="button">Add Student</a>
+          </div>
+
+
+    </div>
+    <!--close container-->
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
